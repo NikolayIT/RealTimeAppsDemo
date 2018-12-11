@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. ServerSentEventsDemo", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04. WebSocketsDemo", "04. WebSockets\04. WebSocketsDemo.csproj", "{EA3C9BFB-A397-4092-ACA2-4C764796AB72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{50D6CFE4-1140-4528-AE5F-006362C4EEF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{50D6CFE4-1140-4528-AE5F-006362C4EEF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. SignalRDemo", "05. SignalRDemo\05. SignalRDemo.csproj", "{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{50D6CFE4-1140-4528-AE5F-006362C4EEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D6CFE4-1140-4528-AE5F-006362C4EEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D6CFE4-1140-4528-AE5F-006362C4EEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

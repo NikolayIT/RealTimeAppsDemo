@@ -1,4 +1,4 @@
-﻿namespace PollingDemo
+﻿namespace SignalRDemo
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -10,7 +10,6 @@
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddSingleton<IOrderService, OrderService>();
         }
 
@@ -21,8 +20,8 @@
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
         }
     }
 }
