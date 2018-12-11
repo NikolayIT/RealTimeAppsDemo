@@ -6,10 +6,14 @@
 
     using SharedLibrary;
 
+    using SignalRDemo.Hubs;
+
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddSignalR().AddMessagePackProtocol();
             services.AddSingleton<IOrderService, OrderService>();
         }
 
@@ -22,6 +26,9 @@
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseSignalR(routes => routes.MapHub<CoffeeHub>("/coffeehub"));
+            app.UseMvc();
         }
     }
 }
