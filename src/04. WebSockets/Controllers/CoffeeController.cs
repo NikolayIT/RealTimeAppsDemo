@@ -17,14 +17,16 @@
         private readonly IOrderService orderService;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public CoffeeController(IOrderService orderService, IHttpContextAccessor httpContextAccessor)
+        public CoffeeController(
+            IOrderService orderService,
+            IHttpContextAccessor httpContextAccessor)
         {
             this.orderService = orderService;
             this.httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost]
-        public IActionResult OrderCoffee([FromBody] Order order)
+        public IActionResult OrderCoffee(Order order)
         {
             var orderId = this.orderService.NewOrder();
             return this.Accepted(orderId);
@@ -49,7 +51,6 @@
         private async Task SendEvents(WebSocket webSocket, int id)
         {
             CheckResult result;
-
             do
             {
                 result = this.orderService.GetUpdate(id);

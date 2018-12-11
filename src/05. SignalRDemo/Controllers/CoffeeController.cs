@@ -15,7 +15,9 @@
         private readonly IOrderService orderService;
         private readonly IHubContext<CoffeeHub> coffeeHub;
 
-        public CoffeeController(IOrderService orderService, IHubContext<CoffeeHub> coffeeHub)
+        public CoffeeController(
+            IOrderService orderService,
+            IHubContext<CoffeeHub> coffeeHub)
         {
             this.orderService = orderService;
             this.coffeeHub = coffeeHub;

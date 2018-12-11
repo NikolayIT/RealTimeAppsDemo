@@ -2,8 +2,7 @@
     const socket = new WebSocket(`ws://localhost:60907/Coffee/${id}`);
 
     socket.onmessage = event => {
-        const statusDiv = document.getElementById("status");
-        statusDiv.innerHTML = JSON.parse(event.data);
+        document.getElementById("status").innerHTML = JSON.parse(event.data);
     };
 };
 

@@ -1,8 +1,6 @@
 ﻿listen = (id) => {
-    console.log("listen");
     var eventSource = new EventSource(`/Coffee/${id}`);
     eventSource.onmessage = (event) => {
-        console.log("onmessage");
         document.getElementById("status").innerHTML = event.data;
     };
 };

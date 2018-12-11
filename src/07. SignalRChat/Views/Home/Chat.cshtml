@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="input-holder">
+        <div class="input-holder">
+            <div id="message-holder" class="mt-3 d-flex justify-content-start">
+                <h4>Message </h4>
+                <input class="w-75 ml-4 pl-3" type="text" id="messageInput" placeholder="Message..." />
+                <button id="sendButton" class="ml-4 btn btn-dark"><h5>Send</h5></button>
+            </div>
+        </div>
+    </div>
+    <hr style="height: 5px;" class="bg-dark" />
+    <div id="messagesList" style="font-size: 32px;">
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var connection =
+            new signalR.HubConnectionBuilder()
+                .withUrl("/chat")
+                .build();
+
+        connection.on("NewMessage",
+            function (message) {
+                var chatInfo = `<div>[${message.user}] ${message.text}</div>`;
+                $("#messagesList").append(chatInfo);
+            });
+
+        $("#sendButton").click(function() {
+            var message = $("#messageInput").val();
+            connection.invoke("Send", message);
+        });
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+    </script>
+}
