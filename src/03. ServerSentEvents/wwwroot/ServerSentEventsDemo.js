@@ -1,8 +1,9 @@
 ﻿listen = (id) => {
+    console.log("listen");
     var eventSource = new EventSource(`/Coffee/${id}`);
     eventSource.onmessage = (event) => {
-        const statusDiv = document.getElementById("status");
-        statusDiv.innerHTML = event.data;
+        console.log("onmessage");
+        document.getElementById("status").innerHTML = event.data;
     };
 };
 
@@ -16,5 +17,8 @@ document.getElementById("submit").addEventListener("click", e => {
             body: { product, size }
         })
         .then(response => response.text())
-        .then(text => listen(text));
+        .then(id => {
+            document.getElementById("status").innerHTML = `Starting coffee #${id}`;
+            listen(id);
+        });
 });

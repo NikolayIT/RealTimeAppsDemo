@@ -1,6 +1,6 @@
 ﻿namespace ServerSentEventsDemo.Controllers
 {
-    using System.Threading;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -10,36 +10,35 @@
     [Route("[controller]")]
     public class CoffeeController : Controller
     {
-        private readonly OrderChecker orderChecker;
+        private readonly IOrderService orderService;
 
-        public CoffeeController(OrderChecker orderChecker)
+        public CoffeeController(IOrderService orderService)
         {
-            this.orderChecker = orderChecker;
+            this.orderService = orderService;
         }
 
         [HttpPost]
         public IActionResult OrderCoffee(Order order)
         {
-            // Start process for order
-            return this.Accepted(1); // return order id 1
+            var orderId = this.orderService.NewOrder();
+            return this.Accepted(orderId);
         }
 
-        [HttpGet("{orderNo}")]
-        public async void GetUpdateForOrder(int orderNo)
+        [HttpGet("{id}")]
+        public async Task GetUpdateForOrder(int id)
         {
             this.Response.ContentType = "text/event-stream";
             CheckResult result;
 
             do
             {
-                result = this.orderChecker.GetUpdate(orderNo);
-                Thread.Sleep(1000);
+                result = this.orderService.GetUpdate(id);
                 if (!result.New)
                 {
                     continue;
                 }
 
-                await this.HttpContext.Response.WriteAsync(result.Update);
+                await this.HttpContext.Response.WriteAsync($"data: {result.Update}\n\n");
                 await this.HttpContext.Response.Body.FlushAsync();
             }
             while (!result.Finished);

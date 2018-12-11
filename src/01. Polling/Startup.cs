@@ -15,8 +15,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton(new Random());
-            services.AddSingleton<OrderChecker>();
+            services.AddSingleton<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

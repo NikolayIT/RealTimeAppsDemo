@@ -13,8 +13,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton(new Random());
-            services.AddSingleton<OrderChecker>();
+            services.AddSingleton<IOrderService, OrderService>();
             services.AddHttpContextAccessor();
         }
 

@@ -14,30 +14,30 @@
     [Route("[controller]")]
     public class CoffeeController : Controller
     {
-        private readonly OrderChecker orderChecker;
+        private readonly IOrderService orderService;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public CoffeeController(OrderChecker orderChecker, IHttpContextAccessor httpContextAccessor)
+        public CoffeeController(IOrderService orderService, IHttpContextAccessor httpContextAccessor)
         {
-            this.orderChecker = orderChecker;
+            this.orderService = orderService;
             this.httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost]
         public IActionResult OrderCoffee(Order order)
         {
-            // Start process for order
-            return this.Accepted(1); // return order id 1
+            var orderId = this.orderService.NewOrder();
+            return this.Accepted(orderId);
         }
 
-        [HttpGet("{orderNo}")]
-        public async void GetUpdateForOrder(int orderNo)
+        [HttpGet("{id}")]
+        public async Task GetUpdateForOrder(int id)
         {
             var context = this.httpContextAccessor.HttpContext;
             if (context.WebSockets.IsWebSocketRequest)
             {
                 var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                await this.SendEvents(webSocket, orderNo);
+                await this.SendEvents(webSocket, id);
                 await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Done", CancellationToken.None);
             }
             else
@@ -46,15 +46,13 @@
             }
         }
 
-        private async Task SendEvents(WebSocket webSocket, int orderNo)
+        private async Task SendEvents(WebSocket webSocket, int id)
         {
             CheckResult result;
 
             do
             {
-                result = this.orderChecker.GetUpdate(orderNo);
-                Thread.Sleep(1000);
-
+                result = this.orderService.GetUpdate(id);
                 if (!result.New)
                 {
                     continue;

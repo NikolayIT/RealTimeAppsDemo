@@ -1,7 +1,5 @@
 ﻿namespace ServerSentEventsDemo
 {
-    using System;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
@@ -13,8 +11,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton(new Random());
-            services.AddSingleton<OrderChecker>();
+            services.AddSingleton<IOrderService, OrderService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

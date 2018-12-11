@@ -1,36 +1,33 @@
 ﻿namespace LongPollingDemo.Controllers
 {
-    using System.Threading;
-
     using Microsoft.AspNetCore.Mvc;
 
     using SharedLibrary;
 
     [Route("[controller]")]
-    public class CoffeeController: Controller
+    public class CoffeeController : Controller
     {
-        private readonly OrderChecker orderChecker;
+        private readonly IOrderService orderService;
 
-        public CoffeeController(OrderChecker orderChecker)
+        public CoffeeController(IOrderService orderService)
         {
-            this.orderChecker = orderChecker;
+            this.orderService = orderService;
         }
 
         [HttpPost]
         public IActionResult OrderCoffee(Order order)
         {
-            // Start process for order
-            return this.Accepted(1); // return order id 1
+            var orderId = this.orderService.NewOrder();
+            return this.Accepted(orderId);
         }
 
-        [HttpGet("{orderNo}")]
-        public IActionResult GetUpdateForOrder(int orderNo)
+        [HttpGet("{id}")]
+        public IActionResult GetUpdateForOrder(int id)
         {
             CheckResult result;
             do
             {
-                result = this.orderChecker.GetUpdate(orderNo);
-                Thread.Sleep(1000);
+                result = this.orderService.GetUpdate(id);
             }
             while (!result.New);
 

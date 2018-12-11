@@ -1,5 +1,5 @@
 ﻿listen = (id) => {
-    const socket = new WebSocket(`ws://localhost:60906/Coffee/${id}`);
+    const socket = new WebSocket(`ws://localhost:60907/Coffee/${id}`);
 
     socket.onmessage = event => {
         const statusDiv = document.getElementById("status");
@@ -17,5 +17,8 @@ document.getElementById("submit").addEventListener("click", e => {
             body: { product, size }
         })
         .then(response => response.text())
-        .then(text => listen(text));
+        .then(id => {
+            document.getElementById("status").innerHTML = `Starting coffee #${id}`;
+            listen(id);
+        });
 });

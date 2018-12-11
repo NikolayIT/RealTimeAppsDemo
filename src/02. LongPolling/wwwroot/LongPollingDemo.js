@@ -1,4 +1,4 @@
-﻿pollWithTimeout = (url, options, timeout = 9000) => {
+﻿pollWithTimeout = (url, options, timeout = 30000) => {
     return Promise.race([
         fetch(url, options),
         new Promise((_, reject) =>
@@ -11,9 +11,8 @@ poll = (orderId) => {
     pollWithTimeout(`/Coffee/${orderId}`)
         .then(response => {
                 if (response.status === 200) {
-                    const statusDiv = document.getElementById("status");
                     response.json().then(j => {
-                        statusDiv.innerHTML = j.update;
+                        document.getElementById("status").innerHTML = j.update;
                         if (!j.finished)
                             poll(orderId);
                     });
@@ -33,5 +32,8 @@ document.getElementById("submit").addEventListener("click", e => {
             body: { product, size }
         })
         .then(response => response.text())
-        .then(text => poll(text));
+        .then(id => {
+            document.getElementById("status").innerHTML = `Starting coffee #${id}`;
+            poll(id);
+        });
 });

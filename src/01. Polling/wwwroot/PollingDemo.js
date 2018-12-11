@@ -5,15 +5,15 @@ poll = (orderId) => {
         .then(response => {
                 if (response.status === 200) {
                     response.json().then(j => {
-                        const statusDiv = document.getElementById("status");
-                        statusDiv.innerHTML = j.update;
-                        if (j.finished)
+                        document.getElementById("status").innerHTML = j.update;
+                        if (j.finished) {
                             clearInterval(intervalId);
+                        }
                     });
                 }
             }
         );
-}
+};
 
 document.getElementById("submit").addEventListener("click", e => {
     e.preventDefault();
@@ -25,5 +25,8 @@ document.getElementById("submit").addEventListener("click", e => {
             body: { product, size }
         })
         .then(response => response.text())
-        .then(id => intervalId = setInterval(poll, 1000, id));
+        .then(id => {
+            document.getElementById("status").innerHTML = `Starting coffee #${id}`;
+            intervalId = setInterval(poll, 1500, id);
+        });
 });

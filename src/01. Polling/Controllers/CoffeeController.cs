@@ -5,26 +5,26 @@
     using SharedLibrary;
 
     [Route("[controller]")]
-    public class CoffeeController: Controller
+    public class CoffeeController : Controller
     {
-        private readonly OrderChecker orderChecker;
+        private readonly IOrderService orderService;
 
-        public CoffeeController(OrderChecker orderChecker)
+        public CoffeeController(IOrderService orderService)
         {
-            this.orderChecker = orderChecker;
+            this.orderService = orderService;
         }
 
         [HttpPost]
         public IActionResult OrderCoffee(Order order)
         {
-            // Start process for order
-            return this.Accepted(1); // return order id 1
+            var orderId = this.orderService.NewOrder();
+            return this.Accepted(orderId);
         }
 
-        [HttpGet("{orderNo}")]
-        public IActionResult GetUpdateForOrder(int orderNo)
+        [HttpGet("{id}")]
+        public IActionResult GetUpdateForOrder(int id)
         {
-            var result = this.orderChecker.GetUpdate(orderNo);
+            var result = this.orderService.GetUpdate(id);
             if (result.New)
             {
                 return new ObjectResult(result);
