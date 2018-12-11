@@ -15,7 +15,7 @@
         }
 
         [HttpPost]
-        public IActionResult OrderCoffee(Order order)
+        public IActionResult OrderCoffee([FromBody] Order order)
         {
             var orderId = this.orderService.NewOrder();
             return this.Accepted(orderId);

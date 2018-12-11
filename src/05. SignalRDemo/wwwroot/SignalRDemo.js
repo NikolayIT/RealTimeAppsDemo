@@ -1,5 +1,5 @@
 ﻿// WebSocket = undefined;
-//EventSource = undefined;
+// EventSource = undefined;
 //, signalR.HttpTransportType.LongPolling
 
 let connection = null;
@@ -14,11 +14,11 @@ setupConnection = () => {
     });
 
     connection.on("NewOrder", function (order) {
-        document.getElementById("status").innerHTML = "Someone ordered an " + order.product;
+        document.getElementById("status").innerHTML = "Someone ordered a " + order.product;
     });
 
     connection.on("finished", function () {
-        connection.stop();
+        // connection.stop();
     });
 
     connection.start()

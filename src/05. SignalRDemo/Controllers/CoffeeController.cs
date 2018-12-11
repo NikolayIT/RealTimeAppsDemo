@@ -22,7 +22,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> OrderCoffee(Order order)
+        public async Task<IActionResult> OrderCoffee([FromBody] Order order)
         {
             await this.coffeeHub.Clients.All.SendAsync("NewOrder", order);
             var orderId = this.orderService.NewOrder();
