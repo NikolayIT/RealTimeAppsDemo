@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MyCoffee Co</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <header class="row">
+        <div class="col-md-5">
+            <img height="200" src="coffee-logo.jpg" alt="logo"/>
+        </div>
+        <div class="col-md-7 mt-5">
+            So glad we may take your order
+        </div>
+    </header>
+    <form>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label htmlFor="product">What's your coffee?</label>
+                <input type="text"
+                       id="product"
+                       class="form-control"
+                       value="Latte" />
+            </div>
+            <div class="form-group col-md-6">
+                <label htmlFor="size">Size</label>
+                <input type="text"
+                       id="size"
+                       class="form-control"
+                       value="Small" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button id="submit" type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <div id="status"></div>
+            </div>        
+        </div>
+    </form>
+</div>
+
+<script src="ServerSentEventsDemo.js"></script>
+</body>
+</html>
