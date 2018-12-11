@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. SignalRDemo", "05. SignalRDemo\05. SignalRDemo.csproj", "{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. SignalRConsoleClient", "06. SignalRConsoleClient\06. SignalRConsoleClient.csproj", "{E7BAC159-3D84-4145-AC2A-13C56BF326B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E4A9DA-FD85-4A90-ADE6-9D8D85F6FF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7BAC159-3D84-4145-AC2A-13C56BF326B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7BAC159-3D84-4145-AC2A-13C56BF326B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7BAC159-3D84-4145-AC2A-13C56BF326B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7BAC159-3D84-4145-AC2A-13C56BF326B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
