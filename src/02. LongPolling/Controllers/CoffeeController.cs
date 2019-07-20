@@ -31,7 +31,7 @@
             }
             while (!result.New);
 
-            return new ObjectResult(result);
+            return this.Ok(result);
         }
     }
 }

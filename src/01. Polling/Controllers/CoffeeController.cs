@@ -27,7 +27,7 @@
             var result = this.orderService.GetUpdate(id);
             if (result.New)
             {
-                return new ObjectResult(result);
+                return this.Ok(result);
             }
 
             return this.NoContent();
