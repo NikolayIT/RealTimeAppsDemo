@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "07. SignalRChat": {
+    "SignalRChat": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

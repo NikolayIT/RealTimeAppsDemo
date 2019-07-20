@@ -1,15 +1,15 @@
 ﻿@model SignalRChat.Models.ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    this.ViewData["Title"] = "Error";
 }
 
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
-@if (Model.ShowRequestId)
+@if (this.Model.ShowRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        <strong>Request ID:</strong> <code>@this.Model.RequestId</code>
     </p>
 }
 

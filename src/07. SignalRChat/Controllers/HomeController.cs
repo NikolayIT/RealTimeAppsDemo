@@ -1,10 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SignalRChat.Models;
-
-namespace SignalRChat.Controllers
+﻿namespace SignalRChat.Controllers
 {
+    using System.Diagnostics;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
+    using SignalRChat.Models;
+
     public class HomeController : Controller
     {
         public IActionResult Index()
