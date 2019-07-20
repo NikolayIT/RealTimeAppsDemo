@@ -2,20 +2,16 @@
     this.ViewBag.Title = "Chat";
 }
 
-<h2>@this.ViewBag.Title</h2>
+<h1>@this.ViewBag.Title</h1>
 
 <div class="container">
-    <div class="input-holder">
-        <div class="input-holder">
-            <div id="message-holder" class="mt-3 d-flex justify-content-start">
-                <h4>Message </h4>
-                <input class="w-75 ml-4 pl-3" type="text" id="messageInput" placeholder="Message..." />
-                <button id="sendButton" class="ml-4 btn btn-dark"><h5>Send</h5></button>
-            </div>
-        </div>
+    <div id="message-holder" class="mt-3 d-flex justify-content-start">
+        <h4>Message</h4>
+        <input class="w-75 ml-4 pl-3" type="text" id="messageInput" placeholder="Message..." />
+        <button id="sendButton" class="ml-4 btn btn-dark btn-lg">Send</button>
     </div>
     <hr style="height: 5px;" class="bg-dark" />
-    <div id="messagesList" style="font-size: 32px;">
+    <div id="messagesList" style="font-size: 28px;">
     </div>
 </div>
 

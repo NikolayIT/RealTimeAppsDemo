@@ -17,7 +17,7 @@ setupConnection = () => {
         document.getElementById("status").innerHTML = "Someone ordered a " + order.product;
     });
 
-    connection.on("finished", function () {
+    connection.on("Finished", function () {
         // connection.stop();
     });
 

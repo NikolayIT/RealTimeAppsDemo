@@ -4,6 +4,8 @@
     socket.onmessage = event => {
         document.getElementById("status").innerHTML = JSON.parse(event.data);
     };
+
+    // We can send data back to the server: socket.send();
 };
 
 document.getElementById("submit").addEventListener("click", e => {
