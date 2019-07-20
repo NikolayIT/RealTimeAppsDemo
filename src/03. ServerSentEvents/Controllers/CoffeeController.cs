@@ -8,7 +8,7 @@
     using SharedLibrary;
 
     [Route("[controller]")]
-    public class CoffeeController : Controller
+    public class CoffeeController : ControllerBase
     {
         private readonly IOrderService orderService;
 
@@ -38,7 +38,7 @@
                     continue;
                 }
 
-                await this.HttpContext.Response.WriteAsync($"data: {result.Update}\n\n");
+                await this.HttpContext.Response.WriteAsync($"data: {result.Update}\r\n\r\n");
                 await this.HttpContext.Response.Body.FlushAsync();
             }
             while (!result.Finished);

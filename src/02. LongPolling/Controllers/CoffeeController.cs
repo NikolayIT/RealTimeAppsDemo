@@ -5,7 +5,7 @@
     using SharedLibrary;
 
     [Route("[controller]")]
-    public class CoffeeController : Controller
+    public class CoffeeController : ControllerBase
     {
         private readonly IOrderService orderService;
 
