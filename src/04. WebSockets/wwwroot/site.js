@@ -1,5 +1,5 @@
 ﻿listen = (id) => {
-    const socket = new WebSocket(`ws://localhost:60907/Coffee/${id}`);
+    const socket = new WebSocket(`wss://localhost:44308/Coffee/${id}`);
 
     socket.onmessage = event => {
         document.getElementById("status").innerHTML = JSON.parse(event.data);
