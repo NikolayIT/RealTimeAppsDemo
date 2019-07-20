@@ -7,7 +7,7 @@
 
     public static class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             var connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:44317/coffeehub")

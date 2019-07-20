@@ -8,13 +8,6 @@
       "files": [
         "dist/css/bootstrap.min.css"
       ]
-    },
-    {
-      "library": "@aspnet/signalr@1.1.4",
-      "destination": "wwwroot/lib/signalr/",
-      "files": [
-        "dist/browser/signalr.min.js"
-      ]
     }
   ]
 }
