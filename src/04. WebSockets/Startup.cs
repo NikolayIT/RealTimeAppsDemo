@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
     using SharedLibrary;
 
@@ -17,7 +18,7 @@
             services.AddHttpContextAccessor();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -31,7 +32,12 @@
                         ReceiveBufferSize = 4 * 1024,
                     });
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(
+                endpoints =>
+                    {
+                        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                    });
         }
     }
 }

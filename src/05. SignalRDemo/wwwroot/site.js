@@ -41,5 +41,5 @@ document.getElementById("submit").addEventListener("click", e => {
             }
         })
         .then(response => response.text())
-        .then(id => connection.invoke("GetUpdateForOrder", id));
+        .then(id => connection.invoke("GetUpdateForOrder", parseInt(id)));
 });

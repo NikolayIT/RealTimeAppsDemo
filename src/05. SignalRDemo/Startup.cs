@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
     using SharedLibrary;
 
@@ -13,11 +14,15 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSignalR().AddMessagePackProtocol();
+            services.AddSignalR(
+                options =>
+                    {
+                        options.EnableDetailedErrors = true;
+                    }).AddMessagePackProtocol();
             services.AddSingleton<IOrderService, OrderService>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -27,8 +32,13 @@
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseSignalR(routes => routes.MapHub<CoffeeHub>("/coffeehub"));
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(
+                endpoints =>
+                    {
+                        endpoints.MapHub<CoffeeHub>("/coffeehub");
+                        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                    });
         }
     }
 }

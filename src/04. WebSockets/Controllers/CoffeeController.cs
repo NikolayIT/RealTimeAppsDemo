@@ -39,37 +39,32 @@
             if (context.WebSockets.IsWebSocketRequest)
             {
                 var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                await this.SendEvents(webSocket, id);
+                CheckResult result;
+                do
+                {
+                    result = this.orderService.GetUpdate(id);
+                    if (!result.New)
+                    {
+                        continue;
+                    }
+
+                    var jsonMessage = $"\"{result.Update}\"";
+                    await webSocket.SendAsync(
+                        buffer: new ArraySegment<byte>(
+                            array: Encoding.ASCII.GetBytes(jsonMessage),
+                            offset: 0,
+                            count: jsonMessage.Length),
+                        messageType: WebSocketMessageType.Text,
+                        endOfMessage: true,
+                        cancellationToken: CancellationToken.None);
+                }
+                while (!result.Finished);
                 await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Done", CancellationToken.None);
             }
             else
             {
                 context.Response.StatusCode = 400;
             }
-        }
-
-        private async Task SendEvents(WebSocket webSocket, int id)
-        {
-            CheckResult result;
-            do
-            {
-                result = this.orderService.GetUpdate(id);
-                if (!result.New)
-                {
-                    continue;
-                }
-
-                var jsonMessage = $"\"{result.Update}\"";
-                await webSocket.SendAsync(
-                    buffer: new ArraySegment<byte>(
-                        array: Encoding.ASCII.GetBytes(jsonMessage),
-                        offset: 0,
-                        count: jsonMessage.Length),
-                    messageType: WebSocketMessageType.Text,
-                    endOfMessage: true,
-                    cancellationToken: CancellationToken.None);
-            }
-            while (!result.Finished);
         }
     }
 }
