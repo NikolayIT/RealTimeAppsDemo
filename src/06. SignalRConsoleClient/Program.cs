@@ -11,10 +11,10 @@
         public static async Task Main()
         {
             var connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44317/coffeehub")
+                .WithUrl("https://localhost:44305/coffeehub")
                 .AddMessagePackProtocol()
                 .Build();
-
+            
             connection.On<Order>(
                 "NewOrder",
                 order => Console.WriteLine($"Somebody ordered {order.Size} {order.Product}"));
