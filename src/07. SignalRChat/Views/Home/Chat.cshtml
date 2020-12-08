@@ -31,6 +31,7 @@
         $("#sendButton").click(function() {
             var message = $("#messageInput").val();
             connection.invoke("Send", message);
+            $("#messageInput").val("");
         });
 
         connection.start().catch(function (err) {
