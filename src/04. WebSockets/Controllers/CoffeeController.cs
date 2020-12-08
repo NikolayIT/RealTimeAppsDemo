@@ -50,11 +50,9 @@
                 if (result.New)
                 {
                     var jsonMessage = $"\"{result.Update}\"";
+                    var byteMessage = Encoding.UTF8.GetBytes(jsonMessage);
                     await webSocket.SendAsync(
-                        buffer: new ArraySegment<byte>(
-                            array: Encoding.ASCII.GetBytes(jsonMessage),
-                            offset: 0,
-                            count: jsonMessage.Length),
+                        buffer: new ArraySegment<byte>(byteMessage, 0, byteMessage.Length),
                         messageType: WebSocketMessageType.Text,
                         endOfMessage: true,
                         cancellationToken: CancellationToken.None);
